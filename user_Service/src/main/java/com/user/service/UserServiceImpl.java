@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.user.model.UserModel;
-import com.user.model.UserModelDetails;
+import com.user.model.UserModelEntity;
+import com.user.model.UserModelBean;
 import com.user.repository.UserRepository;
 
 @Service
@@ -20,19 +20,22 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepo;
 
 	@Override
-	public void createUser(UserModelDetails userDetails) {
+	public UserModelBean createUser(UserModelBean userDetails) {
 		ObjectMapper mapper = new ObjectMapper();
- 		UserModel userModel = mapper.convertValue(userDetails, UserModel.class);
-		userRepo.save(userModel);
-
+ 		UserModelEntity userModel = mapper.convertValue(userDetails, UserModelEntity.class);
+ 		return mapper.convertValue(userRepo.save(userModel), UserModelBean.class);
+ 		
 	}
+ 
+
+	
 
 	@Override
-	public List<UserModelDetails> getAllUsers() {
-		List<UserModelDetails> list = new ArrayList<>();
+	public List<UserModelBean> getAllUsers() {
+		List<UserModelBean> list = new ArrayList<>();
 		ObjectMapper mapper = new ObjectMapper();
-		for (UserModel temp : userRepo.findAll()) {
-			UserModelDetails details = mapper.convertValue(temp, UserModelDetails.class);
+		for (UserModelEntity temp : userRepo.findAll()) {
+			UserModelBean details = mapper.convertValue(temp, UserModelBean.class);
 			list.add(details);
 
 		}
@@ -42,24 +45,24 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public void deleteUserById(String userId) {
+	public int deleteUserById(String userId) {
 		userRepo.updateDeleteFlag(userId);
 
 	}
-
+	
+	@Transactional
 	@Override
-	public UserModelDetails updateUser(UserModelDetails userDetails, String l) {
-		UserModelDetails userModelDetails = new UserModelDetails();
+	public void updateUser(UserModelBean userDetails, String userId) {
+		UserModelBean userModelDetails = new UserModelBean();
 		ObjectMapper mapper = new ObjectMapper();
-		UserModel userModel = mapper.convertValue(userDetails, UserModel.class);
-		userModelDetails = mapper.convertValue(userRepo.save(userModel), UserModelDetails.class);
-		return userModelDetails;
+		UserModelEntity userModel = mapper.convertValue(userDetails, UserModelEntity.class);
+		userRepo.updateUser(userId, userDetails.getUserName(), userDetails.getUserPassword(), userDetails.getUserEmail(), userDetails.getUserMobile(), userDetails.getUserRole());
 	}
 
 	@Override
-	public UserModelDetails findById(String userId) {
+	public UserModelBean findById(String userId) {
 		ObjectMapper mapper = new ObjectMapper();
-		UserModelDetails details = mapper.convertValue(userRepo.findOne(userId), UserModelDetails.class);
+		UserModelBean details = mapper.convertValue(userRepo.findOne(userId), UserModelBean.class);
 		return details;
 	}
 
