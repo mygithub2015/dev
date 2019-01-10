@@ -53,12 +53,12 @@ public class UserController {
 		details=service.createUser(details);
 		if(details!=null){
 			userList.add(details);
-			responseBean.setStatus_Code(UserConstant.STATUSCODE);
+			responseBean.setStatus_Code(UserConstant.STATUS_CODE);
 			responseBean.setMessage(UserConstant.MESSAGE);
 			responseBean.setUserList(userList);
 			logger.info(UserConstant.SUCCESS);
 		}else{
-			logger.error(UserConstant.ERRORCODE);
+			logger.error(UserConstant.ERROR_CODE);
 			throw new UserCustomException("Record is not found");
 		}
 		return responseBean;
@@ -76,7 +76,7 @@ public class UserController {
 			logger.info(UserConstant.SUCCESS);
 			
 		}else{
-			logger.error(UserConstant.ERRORCODE);
+			logger.error(UserConstant.ERROR_CODE);
 			throw new UserCustomException("Record is not found");
 		}
 		return user;
@@ -94,17 +94,16 @@ public class UserController {
 		System.out.println("Fetching user by userId " + userId);
 		UserModelBean details = service.findById(userId);
 		if (details == null) {
-			throw new UserCustomException(UserConstant.ERRORCODE);
+			throw new UserCustomException(UserConstant.ERROR_CODE);
 		}
 		return new ResponseEntity<UserModelBean>(details, HttpStatus.OK);
 	}
 	
-    
 	
 	/**
 	 * End-Point to delete user by userId
 	 * @param String userId
-	 * @return 
+	 * @return String
 	 */
 	@PutMapping(UserConstant.ENDPOINT_DELETEBYID)
 	public String delete(@PathVariable("userId") String userId) {

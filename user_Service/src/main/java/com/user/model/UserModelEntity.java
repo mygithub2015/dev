@@ -17,26 +17,26 @@ public class UserModelEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = UserConstant.USERID)
+	@Column(name = UserConstant.USER_ID)
 	private String userId;
 	
-	@Column(name = UserConstant.USERPASSWORD)
+	@Column(name = UserConstant.USER_PASSWORD)
 	private String userPassword;
     
-	@Column(name = UserConstant.USERNAME)
+	@Column(name = UserConstant.USER_NAME)
 	private String userName;
     
-	@Column(name = UserConstant.USEREMAIL)
+	@Column(name = UserConstant.USER_EMAIL)
 	private String userEmail;
     
-	@Column(name = UserConstant.USERMOBILE)
+	@Column(name = UserConstant.USER_MOBILE)
 	private String userMobile;
 
-	@Column(name = UserConstant.USERROLE)
+	@Column(name = UserConstant.USER_ROLE)
 	private String userRole;
 	
 	@JsonIgnore
-	@Column(name= UserConstant.USERSTATUS , columnDefinition="Varchar2(5) default 'N'")
+	@Column(name= UserConstant.USER_STATUS , columnDefinition="Varchar2(5) default 'N'")
 	private String userStatus="N";
 
 

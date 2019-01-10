@@ -28,7 +28,7 @@ public interface UserService {
 	 * Method to delete user record by id
 	 * @param String userId
 	 */
-	public int deleteUserById(String userId);
+	public void deleteUserById(String userId);
 
 	/**
 	 * Method to update user

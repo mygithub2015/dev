@@ -28,8 +28,6 @@ public class UserServiceImpl implements UserService {
 	}
  
 
-	
-
 	@Override
 	public List<UserModelBean> getAllUsers() {
 		List<UserModelBean> list = new ArrayList<>();
@@ -45,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public int deleteUserById(String userId) {
+	public void deleteUserById(String userId) {
 		userRepo.updateDeleteFlag(userId);
 
 	}
