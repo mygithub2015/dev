@@ -15,7 +15,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EmailService {
 	public void sendEmail() throws AddressException, MessagingException, IOException
 	{
@@ -27,27 +29,22 @@ public class EmailService {
 		   
 		   Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			      protected PasswordAuthentication getPasswordAuthentication() {
-			         return new PasswordAuthentication("suryacitm@gmail.com", "<your password>");
+			         return new PasswordAuthentication("suryacitm@gmail.com","Surya123654");
 			      }
 			   });
 		   
 		   Message msg = new MimeMessage(session);
-		   msg.setFrom(new InternetAddress("tutorialspoint@gmail.com", false));
+		   msg.setFrom(new InternetAddress("suryacitm@gmail.com", false));
 
 		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("suryacitm@gmail.com"));
-		   msg.setSubject("Tutorials point email");
-		   msg.setContent("Tutorials point email", "text/html");
+		   msg.setSubject("Test Email");
 		   msg.setSentDate(new Date());
 
 		   MimeBodyPart messageBodyPart = new MimeBodyPart();
-		   messageBodyPart.setContent("Tutorials point email", "text/html");
+		   messageBodyPart.setContent("Hi, How are you", "text/html");
 
 		   Multipart multipart = new MimeMultipart();
 		   multipart.addBodyPart(messageBodyPart);
-		   MimeBodyPart attachPart = new MimeBodyPart();
-
-		   attachPart.attachFile("/var/tmp/image19.png");
-		   multipart.addBodyPart(attachPart);
 		   msg.setContent(multipart);
 		   Transport.send(msg);   
 		}

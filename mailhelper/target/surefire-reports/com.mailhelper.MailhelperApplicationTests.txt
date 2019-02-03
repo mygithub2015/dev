@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mailhelper.MailhelperApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.636 s - in com.mailhelper.MailhelperApplicationTests
