@@ -58,8 +58,8 @@ public class UserController {
 			responseBean.setUserList(userList);
 			logger.info(UserConstant.SUCCESS);
 		}else{
-			logger.error(UserConstant.ERROR_CODE);
-			throw new UserCustomException("Record is not found");
+			logger.error(UserConstant.ERROR_MESG);
+			throw new UserCustomException("Record is not created");
 		}
 		return responseBean;
 	}
@@ -70,13 +70,13 @@ public class UserController {
 	 * @return UserModelBean list
 	 */
 	@GetMapping(UserConstant.ENDPOINT_GETUSERS)
-	public List<UserModelBean> getAllUser() {
+	public List<UserModelBean> getAllUsers() {
 		List<UserModelBean> user = service.getAllUsers();
 		if(!user.isEmpty()){
 			logger.info(UserConstant.SUCCESS);
 			
 		}else{
-			logger.error(UserConstant.ERROR_CODE);
+			logger.error(UserConstant.ERROR_MESG);
 			throw new UserCustomException("Record is not found");
 		}
 		return user;
@@ -94,7 +94,7 @@ public class UserController {
 		System.out.println("Fetching user by userId " + userId);
 		UserModelBean details = service.findById(userId);
 		if (details == null) {
-			throw new UserCustomException(UserConstant.ERROR_CODE);
+			throw new UserCustomException(UserConstant.ERROR_MESG);
 		}
 		return new ResponseEntity<UserModelBean>(details, HttpStatus.OK);
 	}

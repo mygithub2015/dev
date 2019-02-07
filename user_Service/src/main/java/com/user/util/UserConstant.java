@@ -7,7 +7,7 @@ import java.util.Set;
 public class UserConstant {
 	public static final String ENDPOINT_CREATE = "/save";
 	public static final String ENDPOINT_GETUSERS = "/get";
-	public static final String ENDPOINT_GETDETAILSBYID = "/userId/{userId}";
+	public static final String ENDPOINT_GETDETAILSBYID = "/userid/{userId}";
 	public static final String ENDPOINT_DELETEBYID = "/delete/{userId}";
 	public static final String ENDPOINT_UPDATE="/update/{userId}";
 	
@@ -24,7 +24,7 @@ public class UserConstant {
     public static final String MESSAGE="Your Record Is Successfully Created";
     
     public static final String SUCCESS="Successful";
-    public static final String ERROR_CODE="Record Not Found";
+    public static final String ERROR_MESG="Record Not Found";
     
     public static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(Arrays.asList("application/json")); 
 	
