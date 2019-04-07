@@ -1,21 +1,31 @@
-## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
-
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/notice_db?useSSL=false
-    username: root
-    password: password1$
-    initialization-mode: always
-
-
-## Hibernate Properties
-# The SQL dialect makes Hibernate generate better SQL for the chosen database
-  jpa:
-    properties:
-      hibernate:
-        #dialect: org.hibernate.dialect.MySQL55Dialect
-        ddl-auto: update
-# Hibernate ddl auto (create, create-drop, validate, update)
-   # hibernate:
-      
+### Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+#
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/notice_db
+#    username: root
+#    password: root
+#    initialization-mode: always
+#
+#
+### Hibernate Properties
+## The SQL dialect makes Hibernate generate better SQL for the chosen database
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl.auto: create
+#      
+#        dialect: org.hibernate.dialect.MySQLDialect
+##        ddl-auto: create
+##        show-sql: true
+#          
+## Hibernate ddl auto (create, create-drop, validate, update)
+#   # hibernate:
+#      
+#
+#
+#
+#logging:
+#  level:
+#    org.springframework: DEBUG

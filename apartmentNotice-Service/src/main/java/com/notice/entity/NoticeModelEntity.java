@@ -18,21 +18,20 @@ import com.notice.util.NoticeConstant;
 
 
 @Entity
-@Table(name= "sendNotice")
+@Table(name="notice")
 public class NoticeModelEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = NoticeConstant.NOTICE_ID)
-	@NotNull(message="NoticeId must not be blank!")
-	private String noticeId;
+	private Long noticeId;
 	
 	@NotNull(message="ApartementId must not be blank!")
 	@Column(name= NoticeConstant.APT_ID)
 	private String apartementId;
 	
 	@Column(name= NoticeConstant.USER_ID)
-	private String unitId;
+	private String userId;
 	
 	@Column(name= NoticeConstant.POST_BY_USER_ID)
 	private String postByUserId;
@@ -60,13 +59,14 @@ public class NoticeModelEntity {
 		
 	}
 
-	public NoticeModelEntity(String noticeId, String apartementId, String unitId, String postByUserId,
-			byte[] attachement, String visibility,  Date noticeStartDate,
+	
+	public NoticeModelEntity(Long noticeId, @NotNull(message = "ApartementId must not be blank!") String apartementId,
+			String userId, String postByUserId, byte[] attachement, String visibility, Date noticeStartDate,
 			Date noticeExpDate, String noticeText) {
 		super();
 		this.noticeId = noticeId;
 		this.apartementId = apartementId;
-		this.unitId = unitId;
+		this.userId = userId;
 		this.postByUserId = postByUserId;
 		this.attachement = attachement;
 		this.visibility = visibility;
@@ -75,13 +75,16 @@ public class NoticeModelEntity {
 		this.noticeText = noticeText;
 	}
 
-	public String getNoticeId() {
+
+	public Long getNoticeId() {
 		return noticeId;
 	}
 
-	public void setNoticeId(String noticeId) {
+
+	public void setNoticeId(Long noticeId) {
 		this.noticeId = noticeId;
 	}
+
 
 	public String getApartementId() {
 		return apartementId;
@@ -91,12 +94,12 @@ public class NoticeModelEntity {
 		this.apartementId = apartementId;
 	}
 
-	public String getUnitId() {
-		return unitId;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUnitId(String unitId) {
-		this.unitId = unitId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getPostByUserId() {
@@ -107,8 +110,8 @@ public class NoticeModelEntity {
 		this.postByUserId = postByUserId;
 	}
 
-	public byte[] getAttachement() {
-		return attachement;
+	public String getAttachement() {
+		return new String(this.attachement);
 	}
 
 	public void setAttachement(byte[] attachement) {
@@ -157,8 +160,8 @@ public class NoticeModelEntity {
 
 	@Override
 	public String toString() {
-		return "NoticeModelEntity [noticeId=" + noticeId + ", apartementId=" + apartementId + ", unitId=" + unitId
-				+ ", postByUserId=" + postByUserId + ", attachement=" + Arrays.toString(attachement) + ", visibility="
+		return "NoticeModelEntity [noticeId=" + noticeId + ", apartementId=" + apartementId + ", userId=" + userId
+				+ ", postByUserId=" + postByUserId + ", attachement=" +(attachement) + ", visibility="
 				+ visibility + ",noticeStartDate=" + noticeStartDate + ", NoticeExpDate="
 				+ NoticeExpDate + ", noticeText=" + noticeText + "]";
 	}

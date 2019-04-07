@@ -43,5 +43,12 @@ public class NoticeResponseBean {
 	public void setUserList(List<NoticeModelEntity> userList) {
 		this.userList = userList;
 	}
+
+	@Override
+	public String toString() {
+		return "NoticeResponseBean [status_Code=" + status_Code + ", message=" + message + ", userList=" + userList
+				+ "]";
+	}
+	
 	
 }
